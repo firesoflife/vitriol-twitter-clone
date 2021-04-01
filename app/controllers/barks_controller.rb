@@ -3,7 +3,8 @@ class BarksController < ApplicationController
 
   # GET /barks or /barks.json
   def index
-    @barks = Bark.all
+    @barks = Bark.all.order('created_at DESC')
+    @bark = Bark.new
   end
 
   # GET /barks/1 or /barks/1.json
@@ -25,7 +26,7 @@ class BarksController < ApplicationController
 
     respond_to do |format|
       if @bark.save
-        format.html { redirect_to @bark, notice: "Bark was successfully created." }
+        format.html { redirect_to root_path, notice: "Bark was successfully created." }
         format.json { render :show, status: :created, location: @bark }
       else
         format.html { render :new, status: :unprocessable_entity }
