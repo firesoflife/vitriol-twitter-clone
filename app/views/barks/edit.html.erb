@@ -1,6 +1,22 @@
-<h1>Editing Bark</h1>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <h1 class="title">Editing Bark</h1>
+        <%= render 'form', bark: @bark %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= render 'form', bark: @bark %>
-
-<%= link_to 'Show', @bark %> |
-<%= link_to 'Back', barks_path %>
+<nav class="navbar is-fixed-bottom">
+  <div class="navbar-menu">
+    <div class="navbar-item">
+      <div class="field is-grouped">
+        <p class="control">
+          <%= link_to 'Cancel', barks_path, class: 'button is-dark' %>
+        </p>
+      </div>
+    </div>
+  </div>
+</nav>
