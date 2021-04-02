@@ -1,5 +1,6 @@
 class BarksController < ApplicationController
   before_action :set_bark, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /barks or /barks.json
   def index
@@ -13,7 +14,7 @@ class BarksController < ApplicationController
 
   # GET /barks/new
   def new
-    @bark = Bark.new
+    @bark = current_user.barks.build
   end
 
   # GET /barks/1/edit
@@ -22,7 +23,7 @@ class BarksController < ApplicationController
 
   # POST /barks or /barks.json
   def create
-    @bark = Bark.new(bark_params)
+    @bark = current_user.barks.build(bark_params)
 
     respond_to do |format|
       if @bark.save
